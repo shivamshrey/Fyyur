@@ -2,6 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 
+from cmath import e
 import json
 from operator import itemgetter
 import dateutil.parser
@@ -950,7 +951,7 @@ def edit_artist_submission(artist_id):
           flash('An error occurred. Artist ' + name + ' could not be updated.')
           print("Error in edit_artist_submission()")
           abort(500)
-          
+
 #  Create Artist
 #  ----------------------------------------------------------------
 
@@ -1131,7 +1132,7 @@ def create_show_submission():
       new_show = Show(start_time=start_time, artist_id=artist_id, venue_id=venue_id)
       db.session.add(new_show)
       db.session.commit()
-  except:
+  except e:
       error_in_insert = True
       print(f'Exception "{e}" in create_show_submission()')
       db.session.rollback()
